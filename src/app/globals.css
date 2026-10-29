@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+ * Lightweight enter animations
+ * Used throughout the UI via `animate-in fade-in` and `slide-in-from-*` classes.
+ * ------------------------------------------------------------------------- */
+@keyframes assignflow-enter {
+  from {
+    opacity: var(--af-enter-opacity, 1);
+    transform: translate3d(
+      var(--af-enter-translate-x, 0),
+      var(--af-enter-translate-y, 0),
+      0
+    );
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-in {
+  animation: assignflow-enter 200ms ease-out both;
+}
+
+.fade-in {
+  --af-enter-opacity: 0;
+}
+
+.slide-in-from-bottom-2 {
+  --af-enter-translate-y: 0.5rem;
+}
+
+.slide-in-from-top-2 {
+  --af-enter-translate-y: -0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    animation: none;
+  }
+}
